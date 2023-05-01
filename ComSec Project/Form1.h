@@ -1,5 +1,6 @@
 #pragma once
 #include "secondForm.h"
+#include "logger.h"
 
 namespace CppCLRWinFormsProject {
 
@@ -24,23 +25,12 @@ namespace CppCLRWinFormsProject {
 			//
 		}
 
-	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~Form1()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
-
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components; private: System::Windows::Forms::Panel^ panel1;
+		System::ComponentModel::Container ^components;
+		System::Windows::Forms::Panel^ panel1;
 		System::Windows::Forms::Label^ label1;
 		System::Windows::Forms::Label^ event1;
 		System::Windows::Forms::Label^ event3;
@@ -63,7 +53,18 @@ namespace CppCLRWinFormsProject {
 		System::Windows::Forms::ToolStripMenuItem^ sPORTSToolStripMenuItem;
 		System::Windows::Forms::ToolStripMenuItem^ cONCERTSToolStripMenuItem;
 		System::Windows::Forms::ToolStripMenuItem^ oTHEREVENTSToolStripMenuItem;
-		System::ComponentModel::IContainer^ components;
+		
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~Form1()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -72,16 +73,6 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->SuspendLayout();
-			// 
-			// Form1
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(738, 484);
-			this->Name = L"Form1";
-			this->Text = L"Form1";
-			this->ResumeLayout(false);
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->event1 = (gcnew System::Windows::Forms::Label());
@@ -363,7 +354,28 @@ namespace CppCLRWinFormsProject {
 			this->Ad_space->TabIndex = 11;
 			this->Ad_space->TabStop = false;
 			this->Ad_space->Text = L"Your Ad Here!";
-			// MyForm
+			// 
+			// hOMEToolStripMenuItem
+			// 
+			this->hOMEToolStripMenuItem->Name = L"hOMEToolStripMenuItem";
+			this->hOMEToolStripMenuItem->Size = System::Drawing::Size(32, 19);
+			// 
+			// sPORTSToolStripMenuItem
+			// 
+			this->sPORTSToolStripMenuItem->Name = L"sPORTSToolStripMenuItem";
+			this->sPORTSToolStripMenuItem->Size = System::Drawing::Size(32, 19);
+			// 
+			// cONCERTSToolStripMenuItem
+			// 
+			this->cONCERTSToolStripMenuItem->Name = L"cONCERTSToolStripMenuItem";
+			this->cONCERTSToolStripMenuItem->Size = System::Drawing::Size(32, 19);
+			// 
+			// oTHEREVENTSToolStripMenuItem
+			// 
+			this->oTHEREVENTSToolStripMenuItem->Name = L"oTHEREVENTSToolStripMenuItem";
+			this->oTHEREVENTSToolStripMenuItem->Size = System::Drawing::Size(32, 19);
+			// 
+			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -373,7 +385,7 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->EventList);
 			this->MinimumSize = System::Drawing::Size(872, 520);
-			this->Name = L"MyForm";
+			this->Name = L"Form1";
 			this->Text = L"Totally Legit Ticket Purchasing Site";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form_Load);
 			this->panel1->ResumeLayout(false);
@@ -401,30 +413,35 @@ namespace CppCLRWinFormsProject {
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (MessageBox::Show("Do you want to buy a ticket?\nFor the formal, yet also casual price of $99.99!", "Buy Ticket", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
 				secondForm^ form = gcnew secondForm;
+				Logger::log(TraceP, "Accessing secondForm.h ...");
 				form->ShowDialog();
 			}
 		}
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (MessageBox::Show("Do you want to buy a ticket?\nFor the small price of $99.99!\n\n\"Warning: we ask that anyone with glasses to switch to contact lens.\nLady with Glasses will not reimburse you\"", "Buy Ticket", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes) {
 				secondForm^ form = gcnew secondForm;
+				Logger::log(TraceP,"Accessing secondForm.h ...");
 				form->ShowDialog();
 			}
 		}
 		private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (MessageBox::Show("Do you want to buy a ticket?\nFor the small price of $99.99!\n\nEvery penny help me regain my sanity.", "Buy Ticket", MessageBoxButtons::YesNo, MessageBoxIcon::Asterisk) == System::Windows::Forms::DialogResult::Yes) {
 				secondForm^ form = gcnew secondForm;
+				Logger::log(TraceP,"Accessing secondForm.h ...");
 				form->ShowDialog();
 			}
 		}
 		private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (MessageBox::Show("Do you want to buy a ticket?\nFor the small price of $99.99!\n\nGo Wildcats!", "Buy Ticket", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
 				secondForm^ form = gcnew secondForm;
+				Logger::log(TraceP,"Accessing secondForm.h ...");
 				form->ShowDialog();
 			}
 		}
 		private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (MessageBox::Show("Do you want to buy a ticket?\nFor the small price of $99.99!\n\n\"Warning this money will be used on Genshin Impact Lootboxes.\"", "Buy Ticket", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
 				secondForm^ form = gcnew secondForm;
+				Logger::log(TraceP,"Accessing secondForm.h ...");
 				form->ShowDialog();
 			}
 		}
@@ -432,19 +449,24 @@ namespace CppCLRWinFormsProject {
 		* just mouse hover events each box
 		*/
 		private: void box1_mouseHover(Object^ sender, System::EventArgs^ e) {
+			Logger::log(TraceP,"Box 1 color changed ...");
 			this->Box1->BackColor = Color::NavajoWhite;
 		}
 		private: void box2_mouseHover(Object^ sender, System::EventArgs^ e) {
+			Logger::log(TraceP,"Box 2 color changed ...");
 			this->Box2->BackColor = Color::NavajoWhite;
 		}
 		private: void box3_mouseHover(Object^ sender, System::EventArgs^ e) {
+			Logger::log(TraceP,"Box 3 color changed ...");
 			this->Box3->BackColor = Color::NavajoWhite;
 		}
 		private: void box4_mouseHover(Object^ sender, System::EventArgs^ e) {
+			Logger::log(TraceP,"Box 4 color changed ...");
 			this->Box4->BackColor = Color::NavajoWhite;
 		}
 		private: void box5_mouseHover(Object^ sender, System::EventArgs^ e) {
+			Logger::log(TraceP,"Box 5 color changed ...");
 			this->Box5->BackColor = Color::NavajoWhite;
 		}
-	};
+};
 }

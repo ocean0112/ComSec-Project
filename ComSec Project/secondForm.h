@@ -1,4 +1,5 @@
 #pragma once
+#include "logger.h"
 
 namespace CppCLRWinFormsProject {
 
@@ -103,6 +104,7 @@ namespace CppCLRWinFormsProject {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(409, 24);
 			this->textBox1->TabIndex = 1;
+			this->textBox1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &secondForm::CharLimit_KeyPress);
 			// 
 			// CardNum
 			// 
@@ -137,7 +139,7 @@ namespace CppCLRWinFormsProject {
 			this->textBox2->MaxLength = 3;
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->PasswordChar = '#';
-
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &secondForm::CharLimit_KeyPress);
 			this->textBox2->Size = System::Drawing::Size(99, 24);
 			this->textBox2->TabIndex= 5;			
 			this->textBox2->PasswordChar = '#';
@@ -175,6 +177,7 @@ namespace CppCLRWinFormsProject {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(99, 24);
 			this->textBox3->TabIndex = 9;
+			this->textBox3->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &secondForm::CharLimit_KeyPress);
 			// 
 			// groupBox1
 			// 
@@ -271,15 +274,22 @@ namespace CppCLRWinFormsProject {
 		}
 #pragma endregion
 		//button event
-	private: System::Void Confirm_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*
-		acts a confirmation to check if user inputs are correct
-		*/
-		if (MessageBox::Show("Is the Credit Card Information you entered correct", "Is this right?", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes) {
-			//this is just a joke
-			MessageBox::Show("Thank you for your Purchase.", "Ha Got'em!", MessageBoxButtons::OK);
-			Application::Exit();
+		private: System::Void Confirm_Click(System::Object^ sender, System::EventArgs^ e) {
+			/*
+			acts a confirmation to check if user inputs are correct
+			*/
+			if (MessageBox::Show("Is the Credit Card Information you entered correct", "Is this right?", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes) {
+				//this is just a joke
+				MessageBox::Show("Thank you for your Purchase.", "Ha Got'em!", MessageBoxButtons::OK);
+				Logger::log(InfoP,"Build successfully exited through secondForm ...");
+				Application::Exit();
+			}
 		}
-	}
+		private: System::Void CharLimit_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			if (!(e->KeyChar == 8 || (e->KeyChar >= 48 && e->KeyChar <= 57))) {
+				e->Handled = true;
+			}
+			else Logger::log(WarnP, "Invalid input for textbox");
+		}
 	};
 }
